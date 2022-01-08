@@ -5,10 +5,14 @@ pipeline {
         dockerImage = 'atelier6'
     }
     agent any
+    tools {
+        maven 'Maven'
+        jdk 'java 17.0.1'
+    }
     stages {
         stage('Build') {
             steps {
-                sh 'mvn package'
+                sh 'mvn clean package'
             }
         }
         stage('Building image') {
