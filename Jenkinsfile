@@ -1,23 +1,30 @@
 pipeline {
-    agent any
-    tools {
-        maven 'Maven'
-        jdk 'java 17.0.1'
+    environment {
+        registry = "hichamouja99/atelier6"
+        registryCredential = 'd7de5acd-7b46-4e96-8f0e-c67a48d2b925'
+        dockerImage = 'atelier6'
     }
+    agent any
     stages {
-        stage('Clean') {
-            steps {
-                sh 'mvn clean'
-            }
-        }
-        stage('Test') {
-            steps {
-                sh 'mvn test'
-            }
-        }
-        stage ('Package') {
+        stage('Build') {
             steps {
                 sh 'mvn package'
+            }
+        }
+        stage('Building image') {
+            steps{
+                script {
+                    dockerImage = docker.build registry + ":$BUILD_NUMBER"
+                }
+            }
+        }
+        stage('Deploy Image') {
+            steps{
+                script {
+                    docker.withRegistry( 'atelier6', registryCredential ) {
+                        dockerImage.push()
+                    }
+                }
             }
         }
     }
