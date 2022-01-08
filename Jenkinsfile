@@ -16,6 +16,11 @@ pipeline {
             }
         }
         stage('Building image') {
+            agent {
+                docker {
+                    label 'docker'
+                }
+            }
             steps{
                 script {
                     docker.build registry + ":$BUILD_NUMBER"
