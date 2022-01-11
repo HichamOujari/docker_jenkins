@@ -16,6 +16,7 @@ pipeline {
             }
         }
         stage('Building image') {
+            agent { docker 'openjdk:7' }
             steps{
                 script {
                     dockerImage = docker.build registry + ":$BUILD_NUMBER"
