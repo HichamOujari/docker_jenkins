@@ -16,8 +16,10 @@ pipeline {
             }
         }
         stage('Building image') {
-            steps {
-                sh 'docker build -t hichamouja99/atelier6:27 .'
+            steps{
+                script {
+                    dockerImage = docker.build registry + ":$BUILD_NUMBER"
+                }
             }
         }
         stage('Deploy Image') {
