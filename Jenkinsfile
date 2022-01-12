@@ -6,7 +6,6 @@ pipeline{
         dockerImage = ''
     }
   agent any
-
     stages {
         stage('Build') {
                steps {
@@ -16,7 +15,7 @@ pipeline{
         stage('Build Docker Image') {
             steps {
                 script {
-                  sh 'docker build -t hichamouja99/atelier6 .'
+                  sh '/opt/homebrew/bin/docker build -t hichamouja99/atelier6 .'
                 }
             }
         }
@@ -25,7 +24,7 @@ pipeline{
                   steps{
                    script {
                    docker.withRegistry( '', registryCredential ) {
-                   sh 'docker push hichamouja99/atelier6'
+                   sh '/opt/homebrew/bin/docker push hichamouja99/atelier6'
                    }
                    }
                    }
