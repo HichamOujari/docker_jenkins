@@ -1,4 +1,4 @@
-ipeline{
+pipeline{
    
     environment {
 registry = "hichamouja99/atelier6"
