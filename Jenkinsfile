@@ -26,7 +26,9 @@ dockerImage = ''
         stage('Deploy Image') {
             steps{
                 script {
-                    sh '/opt/homebrew/bin/docker push hichamouja99/atelier6'
+                    sh '/opt/homebrew/bin/docker login -u hichamouja99 -p "Hicham1237*@"' {
+                        sh '/opt/homebrew/bin/docker push hichamouja99/atelier6'
+                    }
                 }
             }
         }
