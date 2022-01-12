@@ -1,10 +1,10 @@
 pipeline{
    
     environment {
-registry = "hichamouja99/atelier6"
-registryCredential = 'dockerhub'
-dockerImage = ''
-}
+        registry = "hichamouja99/atelier6"
+        registryCredential = 'dockerhub'
+        dockerImage = ''
+    }
   agent any
 
     stages {
